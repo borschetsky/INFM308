@@ -47,7 +47,9 @@ public class PeopleAdapter extends ArrayAdapter<Person> {
         TextView magnitudeView = listItemView.findViewById(R.id.main_title);
         // Display the magnitude of the current earthquake in that TextView
         magnitudeView.setText(currentPerson.name);
-
+        TextView subTitleView = listItemView.findViewById(R.id.sub_title);
+        // Display the magnitude of the current earthquake in that TextView
+        subTitleView.setText(currentPerson.gender);
         ImageView avatarView = listItemView.findViewById(R.id.image);
         Picasso.get().load(currentPerson.avatar).into(avatarView);
 //        new DownloadImageTask(avatarView).execute(currentPerson.avatar);
@@ -58,36 +60,5 @@ public class PeopleAdapter extends ArrayAdapter<Person> {
         return listItemView;
     }
 
-    public static Drawable LoadImageFromWebOperations(String url) {
-        try {
-            InputStream is = (InputStream) new URL(url).getContent();
-            Drawable d = Drawable.createFromStream(is, "src name");
-            return d;
-        } catch (Exception e) {
-            return null;
-        }
-    }
 
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
-        public DownloadImageTask(ImageView bmImage) {
-            this.bmImage = bmImage;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
-            Bitmap bmp = null;
-            try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                bmp = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return bmp;
-        }
-        protected void onPostExecute(Bitmap result) {
-            bmImage.setImageBitmap(result);
-        }
-    }
 }

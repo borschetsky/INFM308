@@ -1,5 +1,6 @@
 package com.example.infm308;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -29,6 +31,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -85,12 +88,26 @@ public class ToDo extends Fragment {
         // Inflate the layout for this fragment
         MainActivity activity = (MainActivity)getActivity();
         Context ctx = activity.getApplicationContext();
-//        String myDataFromActivity = activity.getData();
         View rootView = inflater.inflate(R.layout.fragment_to_do, container, false);
-//        TextView textView = rootView.findViewById(R.id.todoFragment);
-//        textView.setText("My Text");
+
         ListView listView = rootView.findViewById(R.id.people_listView);
+
         Request(activity, listView);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Person obj =  (Person) listView.getAdapter().getItem(position);
+//                String name = (String)obj.get("name");
+//                Toast.makeText(activity.getApplicationContext(), "YOYOYO", Toast.LENGTH_LONG).show();
+//                Snackbar.make(listView, obj.name, Snackbar.LENGTH_LONG).show();
+                Intent intent = null;
+                if(intent == null){
+                    intent = new Intent(activity.getApplicationContext(), ChracterActivity.class);
+                }
+                intent.putExtra("person", obj);
+                startActivity(intent);
+            }
+        });
         return rootView;
     }
 
@@ -99,8 +116,6 @@ public class ToDo extends Fragment {
     }
 
     public  void Request (MainActivity activity, ListView listView){
-        RequestQueue queue = Volley.newRequestQueue(activity.getApplicationContext());
-
         JsonObjectRequest objectRequest = new JsonObjectRequest(
                 Request.Method.GET,
                 SWAPI,
@@ -108,9 +123,8 @@ public class ToDo extends Fragment {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-//                        textView.setText(response.toString());
                         JSONArray array = null;
-                                                Gson gson = new Gson();
+                        Gson gson = new Gson();
 
                         ArrayList<Person> personArray = new ArrayList<>();
                         try {
@@ -136,8 +150,6 @@ public class ToDo extends Fragment {
                         String test = response.toString();
                         PeopleAdapter adapter = new PeopleAdapter(activity.getApplicationContext(), personArray);
                         listView.setAdapter(adapter);
-//                        Gson gson = new Gson();
-//                        Person p = gson.fromJson(test, Person.class);
                     }
                 },
                 new Response.ErrorListener() {
@@ -148,7 +160,6 @@ public class ToDo extends Fragment {
                     }
                 }
         );
-
-        queue.add(objectRequest);
+        MySingleton.getInstance(activity.getApplicationContext()).addToRequestQueue(objectRequest);
     }
 }

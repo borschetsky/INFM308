@@ -7,8 +7,16 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/vehiclesFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        />
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/vehicles_listView"/>
 
 </FrameLayout>

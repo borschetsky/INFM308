@@ -47,20 +47,11 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), 0);
-        viewPagerAdapter.addFragment(toDoFragment, "ToDo");
-        viewPagerAdapter.addFragment(doneFragment, "Done");
+        viewPagerAdapter.addFragment(toDoFragment, "Characters");
+        viewPagerAdapter.addFragment(doneFragment, "Starships");
 
         viewPager.setAdapter(viewPagerAdapter);
-//        Thread thread = new Thread(new Runnable(){
-//            @Override
-//            public void run(){
-//                //code to do the HTTP request
-//                Request();
-//            }
-//        });
-//        thread.start();
-//        Request();
-//        Snackbar.make(viewPager, "Hello,", Snackbar.LENGTH_LONG).show();
+
 
         Toast.makeText(MainActivity.this, "response.toString()", Toast.LENGTH_LONG).show();
         Thread thread = new Thread(new Runnable(){
