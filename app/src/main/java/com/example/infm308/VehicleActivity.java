@@ -6,7 +6,6 @@ import androidx.appcompat.widget.Toolbar;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-import com.example.infm308.models.Person;
 import com.example.infm308.models.Vehicle;
 import com.squareup.picasso.Picasso;
 

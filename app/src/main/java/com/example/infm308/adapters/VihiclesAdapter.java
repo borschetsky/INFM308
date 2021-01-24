@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.example.infm308.R;
-import com.example.infm308.models.Person;
 import com.example.infm308.models.Vehicle;
 import com.squareup.picasso.Picasso;
 

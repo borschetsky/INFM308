@@ -1,12 +1,6 @@
 package com.example.infm308.adapters;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
-import android.provider.Contacts;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +14,6 @@ import com.example.infm308.R;
 import com.example.infm308.models.Person;
 import com.squareup.picasso.Picasso;
 
-import java.io.InputStream;
-import java.lang.reflect.Array;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class PeopleAdapter extends ArrayAdapter<Person> {

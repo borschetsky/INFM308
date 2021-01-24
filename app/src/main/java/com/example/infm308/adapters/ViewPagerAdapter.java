@@ -1,4 +1,4 @@
-package com.example.infm308;
+package com.example.infm308.adapters;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
