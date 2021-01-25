@@ -1,5 +1,6 @@
 package com.example.infm308;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import com.example.infm308.adapters.ViewPagerAdapter;
 import com.example.infm308.fragments.FavoritesFragment;
 import com.example.infm308.fragments.CharactersFragment;
 import com.example.infm308.fragments.StarshipsFragment;
+import com.example.infm308.service.MusicThemeService;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
@@ -47,5 +49,13 @@ public class MainActivity extends AppCompatActivity {
         viewPagerAdapter.addFragment(favoritesFragment, FAVORITES);
 
         viewPager.setAdapter(viewPagerAdapter);
+
+        startService(new Intent(this, MusicThemeService.class));
+    }
+
+    @Override
+    protected void onDestroy() {
+//        stopService(new Intent(this, MusicThemeService.class));
+        super.onDestroy();
     }
 }
