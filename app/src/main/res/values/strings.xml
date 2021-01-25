@@ -9,5 +9,14 @@
 
     <string name="btn_added">Added</string>
     <string name="person">person</string>
+    <string name="vehicle_title">Title</string>
+    <string name="cehicle_sub_title">Sub Title</string>
+    <string name="vehicle_supporting_text">Supporting Text</string>
+    <string name="vehicle_button_1">Button 1</string>
+    <string name="sql_row_main_title">Main Title</string>
+    <string name="sql_row_sub_title">Sub Title</string>
+    <string name="delete">Delete</string>
+    <string name="row_main_title">Main Title</string>
+    <string name="row_sub_title">Sub Title</string>
 
 </resources>

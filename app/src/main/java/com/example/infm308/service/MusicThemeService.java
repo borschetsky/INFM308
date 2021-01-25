@@ -15,6 +15,7 @@ import java.util.Map;
 
 public class MusicThemeService extends Service {
     MediaPlayer player;
+    Thread thread = null;
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {

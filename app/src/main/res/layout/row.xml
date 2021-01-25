@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="Main Title"
+            android:text="@string/row_main_title"
             android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="Sub Title"
+            android:text="@string/row_sub_title"
             android:textColor="#a9a9a9"
             android:textSize="15sp"
             android:textStyle="bold" />

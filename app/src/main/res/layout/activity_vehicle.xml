@@ -43,7 +43,7 @@
                         android:id="@+id/vehicle_Name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Title"
+                        android:text="@string/vehicle_title"
                         android:textAppearance="?attr/textAppearanceHeadline6"
                         />
                     <TextView
@@ -52,7 +52,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Sub Title"
+                        android:text="@string/cehicle_sub_title"
                         android:textAppearance="?attr/textAppearanceBody2"
                         android:textColor="?android:attr/textColorSecondary"
                         />
@@ -61,7 +61,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:text="Supporting Text"
+                        android:text="@string/vehicle_supporting_text"
                         android:textAppearance="?attr/textAppearanceBody2"
                         android:textColor="?android:attr/textColorSecondary"
                         />
@@ -76,7 +76,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
-                        android:text="Button 1"
+                        android:text="@string/vehicle_button_1"
                         style="?attr/borderlessButtonStyle"
                         android:layout_marginRight="8dp" />
                 </LinearLayout>
