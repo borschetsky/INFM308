@@ -15,11 +15,14 @@
         android:theme="@style/Theme.INFM308">
         <activity android:name=".VehicleActivity"
             android:parentActivityName=".MainActivity"
+            android:screenOrientation="fullSensor"
             android:configChanges="orientation|screenSize"></activity>
         <activity
             android:name=".ChracterActivity"
+            android:screenOrientation="fullSensor"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="fullSensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
