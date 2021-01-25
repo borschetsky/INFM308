@@ -14,7 +14,8 @@ import android.widget.TextView;
 import com.example.infm308.MainActivity;
 import com.example.infm308.R;
 import com.example.infm308.adapters.FavoritesAdapter;
-import com.example.infm308.entities.PersonEntity;
+import com.example.infm308.db.SwapiDbHelper;
+import com.example.infm308.models.Person;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ public class FavoritesFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private SwapiDbHelper swapiDbHelper;
     public FavoritesFragment() {
         // Required empty public constructor
     }
@@ -70,24 +71,23 @@ public class FavoritesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         MainActivity activity = (MainActivity)getActivity();
+
         Context ctx = activity.getApplicationContext();
+        swapiDbHelper = new SwapiDbHelper(ctx);
+
         View rootView = inflater.inflate(R.layout.fragment_favorites, container, false);
         ListView listView = rootView.findViewById(R.id.favorites_listView);
 
-//        List<PersonEntity> personList = PersonEntity.listAll(PersonEntity.class);
-        ArrayList<PersonEntity> arrayList = null;
-        try {
-            arrayList = new ArrayList<>(PersonEntity.listAll(PersonEntity.class));
-        } catch (Exception e) {};
+        ArrayList<Person> personslist = swapiDbHelper.getAllFavorites();
 
-        if(arrayList.size() == 0 || arrayList == null){
+        if(personslist.size() == 0 || personslist == null){
             TextView view = rootView.findViewById(R.id.favoritesFragment);
             view.setText("You still hav no items.");
             return  rootView;
         }
-        FavoritesAdapter adapter = new FavoritesAdapter(activity.getApplicationContext(), arrayList);
+        FavoritesAdapter adapter = new FavoritesAdapter(activity.getApplicationContext(), personslist);
         listView.setAdapter(adapter);
-        // Inflate the layout for this fragment
+
         return rootView;
     }
 }

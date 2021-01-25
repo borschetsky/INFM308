@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.infm308.entities.PersonEntity;
+import com.example.infm308.db.SwapiDbHelper;
 import com.example.infm308.models.Person;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
@@ -21,6 +21,8 @@ import java.util.Iterator;
 import java.util.List;
 
 public class ChracterActivity extends AppCompatActivity {
+    private SwapiDbHelper swapiDbHelper;
+
     String intentKey = "person";
     TextView charName;
     TextView charGender;
@@ -30,6 +32,8 @@ public class ChracterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        swapiDbHelper = new SwapiDbHelper(this);
+
         setContentView(R.layout.activity_chracter);
         Person person = (Person) getIntent().getSerializableExtra(intentKey);
 
@@ -54,7 +58,7 @@ public class ChracterActivity extends AppCompatActivity {
         charBirth.setText(person.birth_year);
 
         insertBtn = findViewById(R.id.insert_char_btn);
-        boolean isAdded = isPersonAdded(person);
+        boolean isAdded = swapiDbHelper.isAdded(person.name);
 //        this.deleteDatabase("swapi.db");
         if(isAdded){
             insertBtn.setEnabled(false);
@@ -63,32 +67,14 @@ public class ChracterActivity extends AppCompatActivity {
             insertBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                PersonEntity entity = new PersonEntity();
-                entity.setName(person.name);
-                entity.setAvatar(person.avatar);
-                entity.setGender(person.gender);
+                    swapiDbHelper.addPersonToFavorites(person);
 
-                entity.save();
-                Snackbar.make(insertBtn, R.string.added_to_f, Snackbar.LENGTH_LONG).show();
-                insertBtn.setEnabled(false);
-                insertBtn.setText(R.string.btn_added);
+                    Snackbar.make(insertBtn, R.string.added_to_f, Snackbar.LENGTH_LONG).show();
+
+                    insertBtn.setEnabled(false);
+                    insertBtn.setText(R.string.btn_added);
                 }
             });
         }
-    }
-
-    private boolean isPersonAdded (Person person){
-        List<PersonEntity> p = PersonEntity.listAll(PersonEntity.class);
-        Iterator iter = p.iterator();
-        boolean isAdded = false;
-        while (iter.hasNext()){
-            PersonEntity entity = (PersonEntity) iter.next();
-            if(entity.getName().equals(person.name)){
-                return true;
-            }
-
-        }
-
-        return isAdded;
     }
 }
