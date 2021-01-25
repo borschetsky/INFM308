@@ -1,5 +1,7 @@
 package com.example.infm308;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -49,13 +51,25 @@ public class MainActivity extends AppCompatActivity {
         viewPagerAdapter.addFragment(favoritesFragment, FAVORITES);
 
         viewPager.setAdapter(viewPagerAdapter);
+        if(!isMyServiceRunning(MusicThemeService.class)){
+            startService(new Intent(MainActivity.this, MusicThemeService.class));
+        }
 
-        startService(new Intent(this, MusicThemeService.class));
     }
 
     @Override
     protected void onDestroy() {
 //        stopService(new Intent(this, MusicThemeService.class));
         super.onDestroy();
+    }
+
+    private boolean isMyServiceRunning(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
     }
 }
